@@ -8,3 +8,5 @@ api/data/
 .vscode/
 .idea/
 *.swp
+.playwright-mcp/
+*.png

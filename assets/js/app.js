@@ -372,7 +372,10 @@ async function declineExpense(id, reason) {
  * --------------------------------------------------------------- */
 const declineModal = (() => {
   const modalEl = () => document.querySelector('modus-wc-modal[modal-id="decline-modal"]');
-  const dialog = () => modalEl()?.shadowRoot?.querySelector("dialog");
+  // Modus 1.8 renders the <dialog> in the modal's *light* DOM, not shadow DOM.
+  const dialog = () =>
+    modalEl()?.querySelector("dialog") ||
+    modalEl()?.shadowRoot?.querySelector("dialog");
   const reasonField = () => document.getElementById("decline-reason");
   const confirmBtn = () => document.getElementById("decline-confirm");
   const cancelBtn = () => document.getElementById("decline-cancel");
