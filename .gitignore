@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+
+# PHP backend runtime
+api/data/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp

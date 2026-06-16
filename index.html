@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Traqspera — Expense Summary</title>
+    <meta
+      name="description"
+      content="Demo of approve/decline workflow on the Traqspera expense summary page, built with Modus Web Components."
+    />
+
+    <!-- Modus styles + icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents@1.8.0/dist/modus-wc-styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Modus Web Components -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents@1.8.0/dist/modus-web-components/modus-web-components.esm.js"
+    ></script>
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Top app bar -->
+    <header class="app-bar" role="banner">
+      <div class="app-bar__left">
+        <button class="icon-btn" aria-label="Toggle navigation">
+          <i class="modus-icons">menu</i>
+        </button>
+        <a class="brand" href="#">
+          <span class="brand__mark" aria-hidden="true">
+            <i class="modus-icons">apps</i>
+          </span>
+          <span class="brand__name">Traqspera</span>
+        </a>
+      </div>
+      <div class="app-bar__right">
+        <button class="icon-btn" aria-label="Notifications">
+          <i class="modus-icons">notifications</i>
+        </button>
+        <button class="icon-btn" aria-label="Help">
+          <i class="modus-icons">help</i>
+        </button>
+        <button class="icon-btn" aria-label="App switcher">
+          <i class="modus-icons">apps</i>
+        </button>
+        <div class="avatar" aria-label="John Doe">JD</div>
+      </div>
+    </header>
+
+    <div class="app-shell">
+      <!-- Side navigation (decorative for this demo) -->
+      <aside class="side-nav" aria-label="Primary">
+        <ul>
+          <li><i class="modus-icons">person_account</i></li>
+          <li><i class="modus-icons">clock</i></li>
+          <li><i class="modus-icons">people_group</i></li>
+          <li><i class="modus-icons">briefcase</i></li>
+          <li class="active" aria-current="page">
+            <i class="modus-icons">dollar</i>
+          </li>
+          <li><i class="modus-icons">bar_graph</i></li>
+          <li><i class="modus-icons">tools</i></li>
+          <li><i class="modus-icons">file</i></li>
+          <li><i class="modus-icons">settings</i></li>
+          <li><i class="modus-icons">person_add</i></li>
+        </ul>
+      </aside>
+
+      <!-- Main content -->
+      <main class="content" id="main">
+        <div class="page-header">
+          <h1>Expense summary</h1>
+          <div class="page-header__actions">
+            <modus-wc-button variant="outlined" color="secondary" size="sm">
+              <i class="modus-icons" aria-hidden="true">add_circle</i>
+              My Expenses
+            </modus-wc-button>
+            <modus-wc-button variant="outlined" color="secondary" size="sm">
+              <i class="modus-icons" aria-hidden="true">export</i>
+              Export Expenses
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <section class="card">
+          <!-- Tabs -->
+          <div class="tabs-row">
+            <button class="tab tab--active" type="button">Expense Entries</button>
+            <button class="tab" type="button">Expense Reports</button>
+          </div>
+
+          <!-- Filter bar -->
+          <div class="filter-bar">
+            <div class="filter-bar__search">
+              <i class="modus-icons" aria-hidden="true">search</i>
+              <input
+                id="search"
+                type="search"
+                placeholder="Search"
+                aria-label="Search expenses"
+              />
+            </div>
+
+            <select id="category-filter" aria-label="Filter by category">
+              <option value="">All</option>
+              <option value="Meals">Meals</option>
+              <option value="Vendor">Vendor</option>
+              <option value="Office Supplies">Office Supplies</option>
+              <option value="Travel">Travel</option>
+            </select>
+
+            <div class="status-pills" role="tablist" aria-label="Filter by status">
+              <button
+                class="status-pill is-active"
+                data-status="all"
+                role="tab"
+                aria-selected="true"
+              >
+                All <span class="count" data-count="all">0</span>
+              </button>
+              <button class="status-pill" data-status="Pending" role="tab">
+                Pending <span class="count" data-count="Pending">0</span>
+              </button>
+              <button class="status-pill" data-status="Approved" role="tab">
+                Approved <span class="count" data-count="Approved">0</span>
+              </button>
+              <button class="status-pill" data-status="Declined" role="tab">
+                Declined <span class="count" data-count="Declined">0</span>
+              </button>
+            </div>
+
+            <button class="icon-btn icon-btn--bordered" aria-label="More filters">
+              <i class="modus-icons">filter</i>
+              <span class="badge">1</span>
+            </button>
+            <div class="view-toggle" role="group" aria-label="View">
+              <button class="view-toggle__btn is-active" aria-label="Table view">
+                <i class="modus-icons">table</i>
+              </button>
+              <button class="view-toggle__btn" aria-label="List view">
+                <i class="modus-icons">list_view</i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Expense table -->
+          <div class="table-wrap" role="region" aria-label="Expenses">
+            <table class="expense-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Description</th>
+                  <th>
+                    Submit Date
+                    <i class="modus-icons sort">sort</i>
+                  </th>
+                  <th>
+                    Category
+                    <i class="modus-icons sort">sort</i>
+                  </th>
+                  <th>Department</th>
+                  <th>Job &amp; Phase</th>
+                  <th>
+                    Total
+                    <i class="modus-icons sort">sort</i>
+                  </th>
+                  <th>Report</th>
+                  <th>
+                    Status
+                    <i class="modus-icons sort">sort</i>
+                  </th>
+                  <th class="col-receipts">Receipts</th>
+                  <th class="col-actions" aria-label="Actions"></th>
+                </tr>
+              </thead>
+              <tbody id="expense-rows">
+                <!-- rows are rendered by JS -->
+              </tbody>
+            </table>
+            <div id="empty-state" class="empty-state" hidden>
+              No expenses match your filters.
+            </div>
+          </div>
+
+          <div class="table-footer">
+            <button id="reset-demo" class="link-btn" type="button">
+              <i class="modus-icons">refresh</i>
+              Reset demo data
+            </button>
+            <span class="muted" id="row-count"></span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Decline reason modal -->
+    <modus-wc-modal
+      modal-id="decline-modal"
+      backdrop="static"
+      position="center"
+      aria-label="Decline expense"
+    >
+      <span slot="header">
+        <strong>Decline expense</strong>
+      </span>
+      <div slot="content" class="decline-modal__content">
+        <p class="muted" id="decline-modal-summary">
+          You are declining this expense.
+        </p>
+        <modus-wc-textarea
+          id="decline-reason"
+          label="Reason for decline"
+          placeholder="Tell the submitter why this is being declined (e.g. missing receipt, wrong category, over budget)."
+          required
+          min-length="10"
+          max-length="500"
+          rows="4"
+        ></modus-wc-textarea>
+        <p class="muted small">
+          Minimum 10 characters. The submitter will see this reason.
+        </p>
+      </div>
+      <div slot="footer" class="decline-modal__footer">
+        <modus-wc-button id="decline-cancel" variant="outlined" color="secondary">
+          Cancel
+        </modus-wc-button>
+        <modus-wc-button id="decline-confirm" color="danger" disabled>
+          Decline expense
+        </modus-wc-button>
+      </div>
+    </modus-wc-modal>
+
+    <!-- Audit popover (single shared instance) -->
+    <div id="audit-popover" class="audit-popover" hidden role="dialog" aria-label="Status details">
+      <div class="audit-popover__row">
+        <span class="audit-popover__label">Status</span>
+        <span id="audit-status" class="audit-popover__value"></span>
+      </div>
+      <div class="audit-popover__row">
+        <span class="audit-popover__label">By</span>
+        <span id="audit-by" class="audit-popover__value">—</span>
+      </div>
+      <div class="audit-popover__row">
+        <span class="audit-popover__label">When</span>
+        <span id="audit-when" class="audit-popover__value">—</span>
+      </div>
+      <div id="audit-reason-row" class="audit-popover__row audit-popover__row--stack" hidden>
+        <span class="audit-popover__label">Reason</span>
+        <span id="audit-reason" class="audit-popover__value"></span>
+      </div>
+    </div>
+
+    <!-- Toast region -->
+    <modus-wc-toast position="bottom-end" id="toast" hidden>
+      <div class="toast-card" role="status" aria-live="polite">
+        <div class="toast-card__body">
+          <i class="modus-icons toast-card__icon" id="toast-icon">check_circle</i>
+          <span id="toast-text">Action completed</span>
+        </div>
+        <modus-wc-button
+          id="toast-undo"
+          variant="borderless"
+          color="primary"
+          size="sm"
+        >
+          Undo
+        </modus-wc-button>
+      </div>
+    </modus-wc-toast>
+
+    <script type="module" src="./assets/js/app.js"></script>
+  </body>
+</html>

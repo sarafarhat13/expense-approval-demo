@@ -1,0 +1,8 @@
+# Block direct access to the SQLite store on Apache hosts.
+<FilesMatch "\.(sqlite|sqlite-journal)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
