@@ -17,6 +17,18 @@ const SEED_URL = "./assets/data/expenses.json";
 const API_URL = "./api/expenses.php";
 const CURRENT_USER = "Sara Farhat"; // demo "logged-in" user
 
+// Clean up state from previous schema versions so old visitors don't get
+// stuck on outdated seed data after a deploy.
+(function purgeOldStorage() {
+  try {
+    Object.keys(localStorage)
+      .filter((k) => k.startsWith("tq.expenses.") && k !== STORAGE_KEY)
+      .forEach((k) => localStorage.removeItem(k));
+  } catch (_) {
+    /* localStorage unavailable — ignore */
+  }
+})();
+
 // Tracks the live undo state so a second action invalidates the previous undo.
 let pendingUndo = null;
 
