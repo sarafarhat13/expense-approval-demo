@@ -93,16 +93,9 @@
     "jobAndPhase": "Job X Phase 3",
     "total": 200,
     "report": "Report X",
-    "status": "Approved",
+    "status": "Pending",
     "receipts": 2,
-    "audit": [
-      {
-        "action": "approved",
-        "by": "Sara Farhat",
-        "at": "2025-05-22T17:30:00Z",
-        "reason": null
-      }
-    ]
+    "audit": []
   },
   {
     "id": "EXP-1008",
@@ -114,16 +107,9 @@
     "jobAndPhase": "Job X Phase 3",
     "total": 200,
     "report": null,
-    "status": "Approved",
+    "status": "Pending",
     "receipts": 2,
-    "audit": [
-      {
-        "action": "approved",
-        "by": "Sara Farhat",
-        "at": "2025-05-22T15:12:00Z",
-        "reason": null
-      }
-    ]
+    "audit": []
   },
   {
     "id": "EXP-1009",
@@ -135,16 +121,9 @@
     "jobAndPhase": "Job X Phase 3",
     "total": 200,
     "report": "Report X",
-    "status": "Approved",
+    "status": "Pending",
     "receipts": 2,
-    "audit": [
-      {
-        "action": "approved",
-        "by": "Sara Farhat",
-        "at": "2025-05-22T11:05:00Z",
-        "reason": null
-      }
-    ]
+    "audit": []
   },
   {
     "id": "EXP-1010",
@@ -156,16 +135,9 @@
     "jobAndPhase": "Job X Phase 3",
     "total": 200,
     "report": "Report Y",
-    "status": "Approved",
+    "status": "Pending",
     "receipts": 2,
-    "audit": [
-      {
-        "action": "approved",
-        "by": "Sara Farhat",
-        "at": "2025-05-22T09:45:00Z",
-        "reason": null
-      }
-    ]
+    "audit": []
   },
   {
     "id": "EXP-1011",
@@ -177,6 +149,20 @@
     "jobAndPhase": "Job X Phase 3",
     "total": 200,
     "report": "Report Y",
+    "status": "Pending",
+    "receipts": 2,
+    "audit": []
+  },
+  {
+    "id": "EXP-1012",
+    "employee": { "name": "Micheal Jackson", "initials": "MJ", "color": "#7c3aed" },
+    "description": "Vendor",
+    "submitDate": "2025-05-21",
+    "category": "Meals",
+    "department": "Electric",
+    "jobAndPhase": "Job X Phase 3",
+    "total": 200,
+    "report": "Report X",
     "status": "Approved",
     "receipts": 2,
     "audit": [
@@ -189,7 +175,7 @@
     ]
   },
   {
-    "id": "EXP-1012",
+    "id": "EXP-1013",
     "employee": { "name": "Devon Smith", "initials": "DS", "color": "#0ea5e9" },
     "description": "Vendor",
     "submitDate": "2025-05-21",
@@ -198,61 +184,19 @@
     "jobAndPhase": "Job X Phase 3",
     "total": 200,
     "report": "Report Y",
-    "status": "Declined",
+    "status": "Approved",
     "receipts": 2,
     "audit": [
       {
-        "action": "declined",
+        "action": "approved",
         "by": "Sara Farhat",
         "at": "2025-05-21T14:25:00Z",
-        "reason": "Receipt is missing — please re-upload a clear copy."
-      }
-    ]
-  },
-  {
-    "id": "EXP-1013",
-    "employee": { "name": "Micheal Jackson", "initials": "MJ", "color": "#7c3aed" },
-    "description": "Vendor",
-    "submitDate": "2025-05-21",
-    "category": "Meals",
-    "department": "Electric",
-    "jobAndPhase": "Job X Phase 3",
-    "total": 200,
-    "report": "Report X",
-    "status": "Declined",
-    "receipts": 2,
-    "audit": [
-      {
-        "action": "declined",
-        "by": "Sara Farhat",
-        "at": "2025-05-21T12:10:00Z",
-        "reason": "Wrong category — should be coded to Office Supplies."
+        "reason": null
       }
     ]
   },
   {
     "id": "EXP-1014",
-    "employee": { "name": "Devon Smith", "initials": "DS", "color": "#0ea5e9" },
-    "description": "Vendor",
-    "submitDate": "2025-05-21",
-    "category": "Category",
-    "department": "Electric",
-    "jobAndPhase": "Job X Phase 3",
-    "total": 200,
-    "report": "Report Y",
-    "status": "Declined",
-    "receipts": 2,
-    "audit": [
-      {
-        "action": "declined",
-        "by": "Sara Farhat",
-        "at": "2025-05-21T10:40:00Z",
-        "reason": "Exceeds the $150 daily meal allowance."
-      }
-    ]
-  },
-  {
-    "id": "EXP-1015",
     "employee": { "name": "Devon Smith", "initials": "DS", "color": "#0ea5e9" },
     "description": "Vendor",
     "submitDate": "2025-05-20",
@@ -268,7 +212,28 @@
         "action": "declined",
         "by": "Sara Farhat",
         "at": "2025-05-20T16:55:00Z",
-        "reason": "Duplicate of EXP-1004 — already submitted."
+        "reason": "Receipt is missing — please re-upload a clear copy."
+      }
+    ]
+  },
+  {
+    "id": "EXP-1015",
+    "employee": { "name": "Micheal Jackson", "initials": "MJ", "color": "#7c3aed" },
+    "description": "Vendor",
+    "submitDate": "2025-05-20",
+    "category": "Meals",
+    "department": "Electric",
+    "jobAndPhase": "Job X Phase 3",
+    "total": 200,
+    "report": "Report X",
+    "status": "Declined",
+    "receipts": 2,
+    "audit": [
+      {
+        "action": "declined",
+        "by": "Sara Farhat",
+        "at": "2025-05-20T12:10:00Z",
+        "reason": "Wrong category — should be coded to Office Supplies."
       }
     ]
   }

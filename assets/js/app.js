@@ -12,7 +12,7 @@
  * Backend: ./api/expenses.php if available, otherwise localStorage demo store.
  * ================================================================ */
 
-const STORAGE_KEY = "tq.expenses.v1";
+const STORAGE_KEY = "tq.expenses.v2";
 const SEED_URL = "./assets/data/expenses.json";
 const API_URL = "./api/expenses.php";
 const CURRENT_USER = "Sara Farhat"; // demo "logged-in" user
