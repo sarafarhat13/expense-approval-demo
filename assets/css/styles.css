@@ -635,6 +635,19 @@ button {
   background: var(--tq-error-500);
 }
 
+.action-btn[disabled],
+.action-btn[aria-disabled="true"] {
+  background: var(--tq-neutral-200);
+  color: var(--tq-neutral-400);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.action-btn[disabled]:hover,
+.action-btn[aria-disabled="true"]:hover {
+  filter: none;
+}
+
 .action-btn .modus-icons {
   font-size: 16px;
   font-weight: 700;

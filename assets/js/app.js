@@ -192,25 +192,42 @@ function applyFilters(rows) {
 }
 
 function renderRow(row) {
-  const showApprove = row.status !== "Approved";
-  const showDecline = row.status !== "Declined";
+  // Both buttons are always rendered. The one matching the current status is
+  // disabled (i.e. you can't re-approve something that's already approved),
+  // while the opposite one stays enabled so admins can still reverse a
+  // decision.
+  const approveDisabled = row.status === "Approved";
+  const declineDisabled = row.status === "Declined";
+
+  const approveTitle = approveDisabled
+    ? `Already approved`
+    : `Approve ${row.id}`;
+  const declineTitle = declineDisabled
+    ? `Already declined`
+    : `Decline ${row.id}`;
 
   const actions = `
     <div class="row-actions">
-      ${
-        showApprove
-          ? `<button class="action-btn action-btn--approve" data-action="approve" data-id="${row.id}" aria-label="Approve ${escapeHtml(row.id)}">
-              <i class="modus-icons" aria-hidden="true">check</i>
-            </button>`
-          : ""
-      }
-      ${
-        showDecline
-          ? `<button class="action-btn action-btn--decline" data-action="decline" data-id="${row.id}" aria-label="Decline ${escapeHtml(row.id)}">
-              <i class="modus-icons" aria-hidden="true">close</i>
-            </button>`
-          : ""
-      }
+      <button
+        class="action-btn action-btn--approve"
+        data-action="approve"
+        data-id="${row.id}"
+        aria-label="${approveTitle}"
+        title="${approveTitle}"
+        ${approveDisabled ? "disabled aria-disabled=\"true\"" : ""}
+      >
+        <i class="modus-icons" aria-hidden="true">check</i>
+      </button>
+      <button
+        class="action-btn action-btn--decline"
+        data-action="decline"
+        data-id="${row.id}"
+        aria-label="${declineTitle}"
+        title="${declineTitle}"
+        ${declineDisabled ? "disabled aria-disabled=\"true\"" : ""}
+      >
+        <i class="modus-icons" aria-hidden="true">close</i>
+      </button>
     </div>
   `;
 
@@ -554,6 +571,7 @@ function wireEvents() {
   document.getElementById("expense-rows").addEventListener("click", (e) => {
     const actionBtn = e.target.closest("[data-action]");
     if (actionBtn) {
+      if (actionBtn.disabled || actionBtn.hasAttribute("aria-disabled")) return;
       const id = actionBtn.dataset.id;
       const action = actionBtn.dataset.action;
       if (action === "approve") approveExpense(id);
